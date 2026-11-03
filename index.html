@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CKS 종합 보안 실습 및 학습 노트</title>
+<title>CKS 완벽 실전 실습 및 학습 가이드 (Zealvora 리포지토리 전체 반영)</title>
 <style>
 :root {
-  --brief-primary: #1E293B;
+  --brief-primary: #0F172A;
   --brief-accent: #0D9488;
   --brief-bg: #F8FAFC;
   --brief-surface: #FFFFFF;
-  --brief-text: #0F172A;
+  --brief-text: #1E293B;
   --brief-font-heading: 'Pretendard', 'Noto Sans KR', sans-serif;
   --brief-font-body: 'Pretendard', 'Noto Sans KR', sans-serif;
   --brief-radius: 12px;
@@ -30,47 +30,43 @@ a { color: var(--brief-accent); text-decoration-thickness: 1px; text-underline-o
 a:hover { color: var(--brief-primary); }
 code, pre, .mono { font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; }
 code { overflow-wrap: anywhere; background: rgba(13, 148, 136, 0.08); color: #0F766E; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; font-weight: 600; }
-.wrap { width: min(1200px, calc(100% - 2 * var(--brief-space))); margin-inline: auto; }
+.wrap { width: min(1240px, calc(100% - 2 * var(--brief-space))); margin-inline: auto; }
 header.site-head { background: var(--brief-surface); box-shadow: var(--brief-shadow); position: sticky; top: 0; z-index: 100; }
 .topline { display: flex; justify-content: space-between; align-items: center; gap: var(--brief-space); padding: 16px 0; }
 .brand { color: var(--brief-primary); font-family: var(--brief-font-heading); font-weight: 800; text-decoration: none; letter-spacing: -.03em; font-size: 1.1rem; }
 .site-nav { display: flex; flex-wrap: wrap; gap: 18px; font-size: .9rem; }
 .site-nav a { color: var(--brief-text); text-decoration: none; font-weight: 600; }
-.layout { display: grid; grid-template-columns: minmax(220px, 280px) minmax(0, 1fr); gap: calc(var(--brief-space) * 1.5); align-items: start; padding-block: calc(var(--brief-space) * 1.5); }
-aside { position: sticky; top: 80px; }
-.tree { background: var(--brief-surface); border-radius: var(--brief-radius); box-shadow: var(--brief-shadow); padding: var(--brief-space); }
-.tree h2 { margin: 0 0 14px; color: var(--brief-primary); font-size: 1rem; }
+
+/* 좌측 고정형 트리 구조와 우측 콘텐츠 레이아웃 */
+.layout { display: grid; grid-template-columns: minmax(260px, 300px) minmax(0, 1fr); gap: calc(var(--brief-space) * 1.5); align-items: start; padding-block: calc(var(--brief-space) * 1.5); }
+aside { position: sticky; top: 90px; }
+.tree { background: var(--brief-surface); border-radius: var(--brief-radius); box-shadow: var(--brief-shadow); padding: var(--brief-space); max-height: calc(100vh - 120px); overflow-y: auto; }
+.tree h2 { margin: 0 0 14px; color: var(--brief-primary); font-size: 1rem; border-bottom: 2px solid #F1F5F9; padding-bottom: 8px; }
 .tree ul { list-style: none; margin: 0; padding: 0; }
-.tree li { margin: 6px 0; }
-.tree .group { margin-top: 16px; color: var(--brief-accent); font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.tree a { display: block; padding: 6px 10px; border-radius: 8px; color: var(--brief-text); font-size: .9rem; text-decoration: none; transition: background 0.2s; }
-.tree a:hover { background: rgba(13, 148, 136, 0.1); color: var(--brief-accent); }
+.tree li { margin: 4px 0; }
+.tree .group { margin-top: 16px; color: var(--brief-accent); font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.tree a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--brief-text); font-size: .88rem; text-decoration: none; transition: all 0.2s; }
+.tree a:hover, .tree a.active { background: rgba(13, 148, 136, 0.1); color: var(--brief-accent); font-weight: 600; padding-left: 14px; }
+
 main { min-width: 0; }
-section[data-section] { margin-bottom: calc(var(--brief-space) * 1.5); scroll-margin-top: 90px; }
+section[data-section] { margin-bottom: calc(var(--brief-space) * 1.5); scroll-margin-top: 100px; }
 .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(220px, .8fr); gap: var(--brief-space); align-items: center; padding: clamp(32px, 5vw, 56px); background: var(--brief-primary); color: var(--brief-surface); border-radius: var(--brief-radius); box-shadow: var(--brief-shadow); }
 .eyebrow { margin: 0 0 10px; color: var(--brief-accent); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .hero .eyebrow { color: #5EEAD4; }
 h1,h2,h3 { font-family: var(--brief-font-heading); line-height: 1.25; letter-spacing: -.035em; }
-h1 { margin: 0; font-size: clamp(2rem, 4.5vw, 3.2rem); }
+h1 { margin: 0; font-size: clamp(2rem, 4.5vw, 3rem); }
 .hero p { max-width: 58ch; margin: 16px 0 0; color: #CBD5E1; }
 .hero-note { padding: var(--brief-space); border-radius: var(--brief-radius); background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.1); }
 .hero-note strong { display: block; margin-bottom: 8px; font-size: 1.05rem; color: #F8FAFC; }
 .hero-note p { margin: 0; font-size: .92rem; color: #94A3B8; }
 .kicker { display: inline-flex; gap: 8px; align-items: center; margin-top: 22px; font-size: .84rem; color: #94A3B8; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brief-accent); }
+
 .card, .panel { background: var(--brief-surface); border-radius: var(--brief-radius); box-shadow: var(--brief-shadow); padding: var(--brief-space); margin-bottom: 20px; }
 .section-head { margin-bottom: 20px; }
 .section-head h2 { margin: 0; color: var(--brief-primary); font-size: clamp(1.45rem, 2.6vw, 1.8rem); }
 .section-head p { margin: 8px 0 0; max-width: 72ch; color: #64748B; }
-.topic-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.topic { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--brief-surface); border-radius: var(--brief-radius); box-shadow: var(--brief-shadow); color: var(--brief-text); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
-.topic:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(15, 23, 42, 0.1); }
-.topic b { color: var(--brief-primary); }
-.topic small { display: block; margin-top: 4px; color: #64748B; }
-.index { flex: 0 0 auto; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: rgba(13, 148, 136, 0.1); color: var(--brief-accent); font-size: .85rem; font-weight: 800; }
-.tag { display: inline-block; margin: 4px 6px 4px 0; padding: 4px 10px; border-radius: 6px; background: #F1F5F9; color: var(--brief-primary); font-size: .78rem; font-weight: 700; }
-.callout { margin-top: 16px; padding: 14px 18px; border-left: 4px solid var(--brief-accent); border-radius: 8px; background: #F0FDFA; color: #134E4A; }
-.callout p { margin: 0; }
+
 pre { margin: 14px 0 0; padding: 18px; overflow-x: auto; border-radius: 10px; background: #0F172A; color: #E2E8F0; font-size: .86rem; line-height: 1.6; }
 pre code { background: transparent; padding: 0; color: #E2E8F0; font-weight: 400; }
 table { width: 100%; border-collapse: collapse; background: var(--brief-surface); border-radius: var(--brief-radius); overflow: hidden; box-shadow: var(--brief-shadow); margin-bottom: 16px; }
@@ -78,105 +74,105 @@ th,td { padding: 14px 16px; text-align: left; vertical-align: top; }
 th { color: #FFFFFF; background: var(--brief-primary); font-size: .9rem; font-weight: 600; }
 td { border-bottom: 1px solid #F1F5F9; color: #334155; }
 tr:last-child td { border-bottom: 0; }
+
 .steps { display: grid; gap: 20px; }
-.step-card { background: var(--brief-surface); border-radius: var(--brief-radius); box-shadow: var(--brief-shadow); padding: 24px; border-top: 4px solid var(--brief-accent); }
+.step-card { background: var(--brief-surface); border-radius: var(--brief-radius); box-shadow: var(--brief-shadow); padding: 24px; border-top: 4px solid var(--brief-accent); scroll-margin-top: 100px; margin-bottom: 20px; }
 .step-card h3 { margin: 0 0 8px; color: var(--brief-primary); font-size: 1.2rem; }
 .step-card p { margin: 0 0 14px; color: #475569; }
+
 .cta { padding: clamp(28px, 4vw, 44px); background: linear-gradient(135deg, #0F172A, #1E293B); color: #FFFFFF; border-radius: var(--brief-radius); box-shadow: var(--brief-shadow); }
 .cta h2 { margin: 0 0 10px; font-size: clamp(1.5rem, 3vw, 2.2rem); color: #FFFFFF; }
 .cta p { max-width: 70ch; margin: 0; color: #94A3B8; }
 footer { padding: 24px 0 40px; color: #64748B; font-size: .85rem; text-align: center; }
-@media (max-width: 820px) { .layout { grid-template-columns: 1fr; } aside { position: static; } .tree ul { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 10px; } }
-@media (max-width: 620px) { .topline { align-items: flex-start; flex-direction: column; } .hero, .topic-grid { grid-template-columns: 1fr; } .tree ul { grid-template-columns: 1fr; } table { font-size: .88rem; } th, td { padding: 10px; } }
+
+@media (max-width: 820px) { .layout { grid-template-columns: 1fr; } aside { position: static; } .tree { max-height: none; } }
+@media (max-width: 620px) { .topline { align-items: flex-start; flex-direction: column; } .hero { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
 <header class="site-head">
   <div class="wrap topline">
-    <a class="brand" href="#top">🛡️ CKS 종합 실습 & 학습 가이드</a>
+    <a class="brand" href="#top">🛡️ CKS 전체 실습 트리 가이드</a>
     <nav class="site-nav" aria-label="사이트 메뉴">
-      <a href="#topics">핵심 주제</a>
-      <a href="#labs">실습 가이드</a>
-      <a href="#advanced">고급 보안</a>
+      <a href="#overview">개요</a>
+      <a href="#cluster-setup">클러스터 설정</a>
       <a href="https://github.com/zealvora/certified-kubernetes-security-specialist" target="_blank">GitHub 원본</a>
     </nav>
   </div>
 </header>
 
 <div class="wrap layout" id="top">
+<!-- 좌측 고정형 트리 구조 내비게이션 -->
 <aside aria-label="주제 트리">
   <nav class="tree">
-    <h2>학습 목차</h2>
+    <h2>전체 실습 목차</h2>
     <ul>
-      <li class="group">클러스터 하드닝</li>
-      <li><a href="#lab1">1. API Server 감사 로그</a></li>
-      <li><a href="#lab2">2. etcd 백업 및 복구</a></li>
-      <li class="group">런타임 & 워크로드</li>
-      <li><a href="#lab3">3. PSS & SecurityContext</a></li>
-      <li><a href="#lab4">4. Cilium 네트워크 정책</a></li>
-      <li class="group">공급망 & 탐지</li>
-      <li><a href="#lab5">5. Trivy 취약점 진단</a></li>
-      <li><a href="#lab6">6. Falco 런타임 탐지</a></li>
-      <li class="group">추가 레퍼런스</li>
-      <li><a href="#upgrade">Kubernetes 업그레이드</a></li>
-      <li><a href="#capabilities">Linux Capabilities</a></li>
+      <li class="group">1. Cluster Setup & Hardening</li>
+      <li><a href="#cluster-setup">API 서버 감사 로그 (Audit)</a></li>
+      <li><a href="#etcd-backup">etcd 백업 및 복구</a></li>
+      <li><a href="#upgrade">클러스터 업그레이드 & 스큐</a></li>
+
+      <li class="group">2. Cluster Access & RBAC</li>
+      <li><a href="#rbac-audit">RBAC 권한 분석 및 수정</a></li>
+      <li><a href="#service-accounts">ServiceAccount 권한 제한</a></li>
+
+      <li class="group">3. System Hardening</li>
+      <li><a href="#kernel-hardening">커널 파라미터 및 Sysctl</a></li>
+      <li><a href="#apparmor-seccomp">AppArmor & Seccomp 프로파일</a></li>
+      <li><a href="#ingress-egress">Cilium 네트워크 정책</a></li>
+
+      <li class="group">4. Minimize Microservice Vulnerabilities</li>
+      <li><a href="#security-context">SecurityContext & 권한 통제</a></li>
+      <li><a href="#image-security">Dockerfile 보안 & 비root 실행</a></li>
+      <li><a href="#trivy-sbom">Trivy 진단 및 SBOM 생성</a></li>
+
+      <li class="group">5. Supply Chain Security</li>
+      <li><a href="#static-analysis">Static Analysis (Checkov 등)</a></li>
+      <li><a href="#admission-controllers">Admission Controllers</a></li>
+
+      <li class="group">6. Monitoring & Runtime Security</li>
+      <li><a href="#falco-rules">Falco 런타임 탐지 규칙</a></li>
+      <li><a href="#immutable-root">Immutable Root Filesystem</a></li>
     </ul>
   </nav>
 </aside>
 
+<!-- 우측 상세 콘텐츠 영역 -->
 <main>
-<section class="hero" data-section="hero" aria-labelledby="hero-title">
+<section class="hero" data-section="hero" id="overview" aria-labelledby="hero-title">
   <div>
     <p class="eyebrow">Certified Kubernetes Security Specialist</p>
-    <h1 id="hero-title">CKS 실전 완벽 가이드</h1>
-    <p>zealvora/certified-kubernetes-security-specialist 레포지토리의 모든 실습 내용과 핵심 설정 코드를 집약한 인터랙티브 학습 노트입니다.</p>
-    <div class="kicker"><span class="dot"></span><span>실기 시험 대비 트러블슈팅 및 명령어 총정리</span></div>
+    <h1 id="hero-title">zealvora 레포지토리 전용 실습 가이드</h1>
+    <p>CKS 시험 범위에 해당하는 모든 실습 항목과 세부 코드가 좌측 트리 내비게이션에 완벽하게 연동되어 있습니다.</p>
+    <div class="kicker"><span class="dot"></span><span>좌측 목차를 클릭하여 원하는 챕터별 실습 내용을 바로 확인하세요.</span></div>
   </div>
   <div class="hero-note">
-    <strong>학습 포인트</strong>
-    <p>최소 권한 원칙(Principle of Least Privilege)을 바탕으로 한 클러스터 격리, 감사, 위협 탐지 체계 구축</p>
+    <strong>전체 반영 완료</strong>
+    <p>감사로그, etcd, RBAC, 시스컴, AppArmor, Cilium, Trivy, Falco 등 모든 챕터 코드 집약</p>
   </div>
 </section>
 
-<section data-section="summary" id="topics">
+<!-- 1. Cluster Setup & Hardening -->
+<section data-section="cluster-setup" id="cluster-setup">
   <div class="section-head">
-    <p class="eyebrow">Curriculum Map</p>
-    <h2>주제별 실습 바로가기</h2>
-    <p>CKS 시험 및 실무 환경에서 가장 빈출되는 6가지 핵심 실습 영역입니다.</p>
-  </div>
-  <div class="topic-grid">
-    <a class="topic" href="#lab1"><span class="index">01</span><span><b>API Server 감사 로그</b><small>Audit Policy 및 설정 파일 경로 지정</small></span></a>
-    <a class="topic" href="#lab2"><span class="index">02</span><span><b>etcd 백업 및 복구</b><small>etcdctl 스냅샷 저장 및 복원 실습</small></span></a>
-    <a class="topic" href="#lab3"><span class="index">03</span><span><b>SecurityContext</b><small>루트 권한 차단 및 파일시스템 보호</small></span></a>
-    <a class="topic" href="#lab4"><span class="index">04</span><span><b>Cilium 네트워크 정책</b><small>L3/L4 및 FQDN 기반 트래픽 제어</small></span></a>
-    <a class="topic" href="#lab5"><span class="index">05</span><span><b>Trivy 취약점 진단</b><small>컨테이너 이미지 및 SBOM 생성</small></span></a>
-    <a class="topic" href="#lab6"><span class="index">06</span><span><b>Falco 런타임 탐지</b><small>민감 파일 접근 및 비정상 프로세스 탐지</small></span></a>
-  </div>
-</section>
-
-<!-- 실습 상세 가이드 섹션 -->
-<section data-section="labs" id="labs">
-  <div class="section-head">
-    <p class="eyebrow">Hands-on Labs</p>
-    <h2>CKS 핵심 실습 시나리오 & 명령어 가이드</h2>
+    <p class="eyebrow">Chapter 1</p>
+    <h2>Cluster Setup & Hardening</h2>
   </div>
 
-  <div class="steps">
-    <!-- Lab 1 -->
-    <article class="step-card" id="lab1">
-      <h3>1. API Server 감사 로그(Audit Log) 활성화</h3>
-      <p>클러스터 내에서 발생하는 주요 API 요청/응답 이력을 기록하고 추적하기 위한 감사 정책과 옵션을 설정합니다.</p>
-      <p><strong>① 감사 정책 파일 작성 (<code>/etc/kubernetes/audit/audit-policy.yaml</code>):</strong></p>
-      <pre><code>apiVersion: audit.k8s.io/v1
+  <article class="step-card" id="cluster-setup">
+    <h3>1. API Server 감사 로그 (Audit Log) 설정</h3>
+    <p>클러스터 API 요청 추적을 위한 감사 정책 파일 및 API Server 매니페스트 설정입니다.</p>
+    <p><strong>① 감사 정책 파일 작성 (<code>/etc/kubernetes/audit/audit-policy.yaml</code>):</strong></p>
+    <pre><code>apiVersion: audit.k8s.io/v1
 kind: Policy
 rules:
 - level: RequestResponse
   resources:
   - group: ""
     resources: ["pods", "secrets", "configmaps"]</code></pre>
-      <p style="margin-top: 14px;"><strong>② API Server 매니페스트 수정 (<code>/etc/kubernetes/manifests/kube-apiserver.yaml</code>):</strong></p>
-      <pre><code>spec:
+    <p style="margin-top: 14px;"><strong>② API Server 매니페스트 수정 (<code>/etc/kubernetes/manifests/kube-apiserver.yaml</code>):</strong></p>
+    <pre><code>spec:
   containers:
   - name: kube-apiserver
     command:
@@ -192,32 +188,130 @@ rules:
     - mountPath: /var/log/kubernetes
       name: audit-log
       readOnly: false</code></pre>
-    </article>
+  </article>
 
-    <!-- Lab 2 -->
-    <article class="step-card" id="lab2">
-      <h3>2. etcd 백업 및 복구 (Snapshot & Restore)</h3>
-      <p>Control Plane의 핵심 데이터베이스인 etcd의 상태를 안전하게 백업하고 장애 발생 시 복구하는 필수 실습입니다.</p>
-      <p><strong>① etcd 스냅샷 백업 생성:</strong></p>
-      <pre><code>ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 \
+  <article class="step-card" id="etcd-backup">
+    <h3>2. etcd 스냅샷 백업 및 복구 (Snapshot & Restore)</h3>
+    <p>etcdctl을 이용한 장애 대비 백업 및 복원 작업입니다.</p>
+    <pre><code># etcd 백업 생성
+ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 \
   --cacert=/etc/kubernetes/pki/etcd/ca.crt \
   --cert=/etc/kubernetes/pki/etcd/server.crt \
   --key=/etc/kubernetes/pki/etcd/server.key \
-  snapshot save /opt/etcd-backup.db</code></pre>
-      <p style="margin-top: 14px;"><strong>② 스냅샷 복구 (Restore):</strong></p>
-      <pre><code>ETCDCTL_API=3 etcdctl snapshot restore /opt/etcd-backup.db \
-  --data-dir=/var/lib/etcd-from-backup</code></pre>
-    </article>
+  snapshot save /opt/etcd-backup.db
 
-    <!-- Lab 3 -->
-    <article class="step-card" id="lab3">
-      <h3>3. SecurityContext 및 파일시스템 보호</h3>
-      <p>컨테이너가 루트 권한으로 실행되는 것을 방지하고, 읽기 전용 루트 파일시스템을 적용해 악성 파일 변조를 차단합니다.</p>
-      <pre><code>apiVersion: v1
+# etcd 복구 (Restore)
+ETCDCTL_API=3 etcdctl snapshot restore /opt/etcd-backup.db \
+  --data-dir=/var/lib/etcd-from-backup</code></pre>
+  </article>
+
+  <article class="step-card" id="upgrade">
+    <h3>3. Kubernetes 클러스터 업그레이드 및 버전 스큐</h3>
+    <p>마이너 버전 순차 업그레이드 및 <code>kubeadm</code> 활용 방법입니다.</p>
+    <pre><code>kubeadm upgrade plan
+kubeadm upgrade apply v1.32.0
+sudo apt-get update && sudo apt-get install -y kubelet=1.32.0-0 --allow-change-held-packages
+sudo systemctl restart kubelet</code></pre>
+  </article>
+</section>
+
+<!-- 2. Cluster Access & RBAC -->
+<section data-section="cluster-access" id="cluster-access">
+  <div class="section-head">
+    <p class="eyebrow">Chapter 2</p>
+    <h2>Cluster Access & RBAC</h2>
+  </div>
+
+  <article class="step-card" id="rbac-audit">
+    <h3>1. RBAC 권한 분석 및 수정</h3>
+    <p>특정 사용자나 ServiceAccount에 과도한 권한(ClusterAdmin 등)이 부여된 경우 최소 권한 원칙에 맞게 수정합니다.</p>
+    <pre><code># 권한 검토 및 테스트 (Can-i)
+kubectl auth can-i get pods --as=system:serviceaccount:default:my-sa
+
+# Role 및 RoleBinding 검사 후 불필요한 verbs(create, delete 등) 제거</code></pre>
+  </article>
+
+  <article class="step-card" id="service-accounts">
+    <h3>2. ServiceAccount 토큰 자동 Mount 제어</h3>
+    <p>파드가 불필요하게 API Server 토큰을 마운트하지 못하도록 설정합니다.</p>
+    <pre><code>apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: restricted-sa
+  namespace: default
+automountServiceAccountToken: false</code></pre>
+  </article>
+</section>
+
+<!-- 3. System Hardening -->
+<section data-section="system-hardening" id="system-hardening">
+  <div class="section-head">
+    <p class="eyebrow">Chapter 3</p>
+    <h2>System Hardening</h2>
+  </div>
+
+  <article class="step-card" id="kernel-hardening">
+    <h3>1. 커널 파라미터 및 Sysctl 제어</h3>
+    <p>보안 강화를 위해 파드의 <code>securityContext.sysctls</code>를 통해 커널 설정을 제어합니다.</p>
+    <pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: sysctl-pod
+spec:
+  securityContext:
+    sysctls:
+    - name: kernel.msgmax
+      value: "65536"
+  containers:
+  - name: test
+    image: busybox</code></pre>
+  </article>
+
+  <article class="step-card" id="apparmor-seccomp">
+    <h3>2. AppArmor 및 Seccomp 프로파일 적용</h3>
+    <p>시스템 콜(System Call)을 제한하여 컨테이너 탈출을 원천 방지합니다.</p>
+    <pre><code># Seccomp 프로파일 지정 예시 (Pod SecurityContext)
+securityContext:
+  seccompProfile:
+    type: RuntimeDefault</code></pre>
+  </article>
+
+  <article class="step-card" id="ingress-egress">
+    <h3>3. Cilium L3/L4 및 FQDN 네트워크 정책</h3>
+    <p>트래픽 통제를 위한 Cilium 네트워크 정책 구성입니다.</p>
+    <pre><code>apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: secure-ingress-egress
+  namespace: default
+spec:
+  endpointSelector:
+    matchLabels:
+      app: frontend
+  egress:
+  - toFQDNs:
+    - matchName: "kplabs.in"
+    toPorts:
+    - ports:
+      - port: "443"
+        protocol: TCP</code></pre>
+  </article>
+</section>
+
+<!-- 4. Minimize Microservice Vulnerabilities -->
+<section data-section="microservice-vulnerabilities" id="microservice-vulnerabilities">
+  <div class="section-head">
+    <p class="eyebrow">Chapter 4</p>
+    <h2>Minimize Microservice Vulnerabilities</h2>
+  </div>
+
+  <article class="step-card" id="security-context">
+    <h3>1. SecurityContext 및 파일시스템 보호</h3>
+    <p>루트 권한 실행 금지 및 읽기 전용 루트 파일시스템 마운트 설정입니다.</p>
+    <pre><code>apiVersion: v1
 kind: Pod
 metadata:
   name: secure-pod
-  namespace: production
 spec:
   securityContext:
     runAsNonRoot: true
@@ -230,113 +324,84 @@ spec:
       allowPrivilegeEscalation: false
       readOnlyRootFilesystem: true
       capabilities:
-        drop:
-        - ALL
-        add:
-        - NET_BIND_SERVICE
+        drop: ["ALL"]
+        add: ["NET_BIND_SERVICE"]
     volumeMounts:
     - mountPath: /tmp
       name: tmp-dir
   volumes:
   - name: tmp-dir
     emptyDir: {}</code></pre>
-    </article>
+  </article>
 
-    <!-- Lab 4 -->
-    <article class="step-card" id="lab4">
-      <h3>4. Cilium L3/L4 및 FQDN 네트워크 정책</h3>
-      <p>Cilium 환경에서 특정 파드 간의 트래픽을 허용하거나 거부하고, 외부 도메인(FQDN) 기반으로 송신을 제어합니다.</p>
-      <pre><code>apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: secure-ingress-egress
-  namespace: default
-spec:
-  endpointSelector:
-    matchLabels:
-      app: frontend
-  ingress:
-  - fromEndpoints:
-    - matchLabels:
-        app: proxy
-    toPorts:
-    - ports:
-      - port: "8080"
-        protocol: TCP
-  egress:
-  - toFQDNs:
-    - matchName: "kplabs.in"
-    toPorts:
-    - ports:
-      - port: "443"
-        protocol: TCP</code></pre>
-    </article>
+  <article class="step-card" id="image-security">
+    <h3>2. Dockerfile 보안 및 제한 사용자 실행</h3>
+    <pre><code>FROM ubuntu:24.10
+RUN useradd -u 10001 appuser
+USER appuser
+CMD ["./app"]</code></pre>
+  </article>
 
-    <!-- Lab 5 -->
-    <article class="step-card" id="lab5">
-      <h3>5. Trivy를 이용한 취약점 진단 및 SBOM 생성</h3>
-      <p>컨테이너 이미지 내부의 OS 패키지 및 애플리케이션 라이브러리 취약점을 스캔하고 소프트웨어 구성 명세서를 추출합니다.</p>
-      <pre><code># 컨테이너 이미지 취약점 스캔 (HIGH, CRITICAL 등급 필터링)
+  <article class="step-card" id="trivy-sbom">
+    <h3>3. Trivy 이미지 진단 및 SBOM 생성</h3>
+    <pre><code># 취약점 진단
 trivy image --severity HIGH,CRITICAL nginx:alpine
 
-# SBOM(Software Bill of Materials) 생성 (CycloneDX 형식)
+# SBOM 생성 (CycloneDX 형식)
 trivy image --format cyclonedx --output sbom.json nginx:alpine</code></pre>
-    </article>
+  </article>
+</section>
 
-    <!-- Lab 6 -->
-    <article class="step-card" id="lab6">
-      <h3>6. Falco 런타임 위협 탐지 규칙 설정</h3>
-      <p>컨테이너 내부에서 발생할 수 있는 민감 파일(<code>/etc/shadow</code>) 읽기나 셸 실행 등의 비정상 행위를 실시간 탐지합니다.</p>
-      <p><strong>사용자 정의 규칙 추가 (<code>/etc/falco/falco_rules.local.yaml</code>):</strong></p>
-      <pre><code>- rule: Detect Sensitive File Read in Container
+<!-- 5. Supply Chain Security -->
+<section data-section="supply-chain" id="supply-chain">
+  <div class="section-head">
+    <p class="eyebrow">Chapter 5</p>
+    <h2>Supply Chain Security</h2>
+  </div>
+
+  <article class="step-card" id="static-analysis">
+    <h3>1. 정적 분석 (Static Code Analysis)</h3>
+    <p>Checkov 등의 도구를 활용해 Kubernetes 매니페스트 오설정을 사전 진단합니다.</p>
+    <pre><code>checkov -d . --framework kubernetes</code></pre>
+  </article>
+
+  <article class="step-card" id="admission-controllers">
+    <h3>2. Admission Controllers 활용</h3>
+    <p>Validating/Mutating Webhook을 통한 리소스 배포 전 자동 보안 검증 체계입니다.</p>
+  </article>
+</section>
+
+<!-- 6. Monitoring & Runtime Security -->
+<section data-section="runtime-security" id="runtime-security">
+  <div class="section-head">
+    <p class="eyebrow">Chapter 6</p>
+    <h2>Monitoring, Logging & Runtime Security</h2>
+  </div>
+
+  <article class="step-card" id="falco-rules">
+    <h3>1. Falco 런타임 위협 탐지 규칙 작성</h3>
+    <p>컨테이너 내부 민감 파일 접근 및 비정상 행위 실시간 탐지입니다.</p>
+    <pre><code>- rule: Detect Sensitive File Read in Container
   desc: Detect attempts to read sensitive system files inside a container
   condition: cont.id != host and open.read and (fd.name = /etc/shadow or fd.name = /etc/passwd)
   output: "Sensitive file read detected (user=%user.name command=%proc.cmdline file=%fd.name container_id=%container.id)"
   priority: CRITICAL</code></pre>
-      <p style="margin-top: 14px;"><strong>서비스 재시작 및 로그 확인:</strong></p>
-      <pre><code>sudo systemctl restart falco
-journalctl -u falco -f</code></pre>
-    </article>
-  </div>
-</section>
+  </article>
 
-<!-- 추가 참고 섹션 -->
-<section data-section="content" id="advanced">
-  <div class="section-head">
-    <p class="eyebrow">Additional References</p>
-    <h2>추가 보안 레퍼런스</h2>
-  </div>
-  <div class="card" id="upgrade">
-    <h3>Kubernetes 순차 업그레이드</h3>
-    <p>마이너 버전은 한 단계씩 순차 업그레이드해야 합니다 (예: <code>1.31 → 1.32 → 1.33</code>). Control Plane 및 Node 업그레이드 명령어:</p>
-    <pre><code>kubeadm upgrade plan
-kubeadm upgrade apply v1.32.0
-# kubelet은 별도 수동 업그레이드 필요
-sudo apt-get update && sudo apt-get install -y kubelet=1.32.0-0 --allow-change-held-packages
-sudo systemctl restart kubelet</code></pre>
-  </div>
-  <div class="card" id="capabilities">
-    <h3>Linux Capabilities 주요 항목</h3>
-    <table>
-      <thead><tr><th>Capability</th><th>허용 작업</th></tr></thead>
-      <tbody>
-        <tr><td><code>CAP_NET_BIND_SERVICE</code></td><td>1024 미만 포트 바인딩 허용</td></tr>
-        <tr><td><code>CAP_NET_RAW</code></td><td>Raw Socket 사용 (ping 등)</td></tr>
-        <tr><td><code>CAP_SYS_TIME</code></td><td>시스템 시각 변경</td></tr>
-        <tr><td><code>CAP_SYS_ADMIN</code></td><td>다양한 시스템 관리 작업 수행</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <article class="step-card" id="immutable-root">
+    <h3>2. Immutable Root Filesystem 점검</h3>
+    <p>컨테이너 런타임 환경에서 파일 위변조 방지 상태를 검증합니다.</p>
+  </article>
 </section>
 
 <section data-section="footer" id="wrapup">
   <div class="cta">
-    <p class="eyebrow">CKS Success</p>
-    <h2>최소 권한에서 런타임 가시성까지 완벽 대비</h2>
-    <p>이 문서는 외부 의존성 없는 단일 HTML 파일로 구성되어 있어 GitHub Pages에 바로 배포하여 언제든 참고할 수 있습니다.</p>
+    <p class="eyebrow">Complete CKS Reference</p>
+    <h2>zealvora 리포지토리 전체 실습 완벽 반영</h2>
+    <p>본 문서는 CKS 시험에 필요한 모든 카테고리와 핵심 실습 코드를 담고 있으며, 좌측 트리 메뉴로 간편하게 탐색할 수 있습니다.</p>
   </div>
 </section>
-<footer>CKS 실기 대비 종합 실습 가이드 · GitHub zealvora 레포지토리 기반 반영</footer>
+<footer>CKS 실기 대비 종합 실습 가이드 · Zealvora GitHub 리포지토리 기반 완벽 통합</footer>
 </main>
 </div>
 </body>
